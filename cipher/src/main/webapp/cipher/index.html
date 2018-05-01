@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+  <div id="main">
+    <h2>Please enter a key</h2>
+    <input type="text" v-model="key"/>
+    <h3>Your key is</h3>
+    <p>{{key}}</p>
+    <br/>
+    <h2>Please enter a message to cipher</h2>
+    <input type="text" v-model="ciphered"/>
+    <h2>Please enter a message to decipher</h2>
+    <input type="text" v-model="deciphered"/>
+  </div>
+
+  <script>
+    new Vue({
+      el: "#main",
+      data: function() {
+        return {
+          key: "",
+          ciphered: "",
+          deciphered: ""
+        }
+      }
+    });
+  </script>
+</body>
+<script type="text/javascript" src="cipher.js"></script>
+<script type="text/javascript" src="decipher.js"></script>
+<script type="text/javascript" src="default.js"></script>
+<style>
+#main {
+  font-family: serif;
+  text-align: center;
+}
+</style>
+
+</html>

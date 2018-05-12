@@ -2,6 +2,8 @@ package core;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Service;
+
 public class cipher {
 	
 	private final int Abase = "A".charAt(0);
@@ -18,15 +20,15 @@ public class cipher {
 		ArrayList<String> encycrpted = new ArrayList<String>();
 		int cIndex = 0;
 		for (String c : mChar) {
-			if (c == " ") {
+			if (c.equals(" ")) {
 				encycrpted.add(c);
-				continue;
+			} else {
+				int num = encycrptChar(c.toUpperCase(), key[cIndex]);
+				String push = Character.toString((char)(num + Abase));
+				encycrpted.add(push);
+				cIndex++;
+				if (cIndex >= key.length) cIndex = 0;
 			}
-			int num = encycrptChar(c.toUpperCase(), key[cIndex]);
-			String push = String.valueOf(num + Abase);
-			encycrpted.add(push);
-			cIndex++;
-			if (cIndex >= key.length) cIndex=0;
 		}
 		StringBuilder sb = new StringBuilder();
 		for (String s : encycrpted) {

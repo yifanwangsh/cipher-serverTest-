@@ -2,41 +2,81 @@
 <head>
 <meta charset="ISO-8859-1">
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="/library/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/q.js/0.9.2/q.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-  <div id="main">
-    <h2>Please enter a key</h2>
-    <input type="text" v-model="key"/>
-    <h3>Your key is</h3>
-    <p>{{key}}</p>
+  <div>
+  	<div id="vue-key-main">
+    	<h2>Please enter a key</h2>
+    	<input type="text" id="js-key-enter" v-model="key"/>
+    	<button id="js-key-enter-button">Update</button>
+    	<span id="js-empty-key" class="css-do-not-display">The key should not be empty</span>
+    	<span id="js-key-updated" class="css-do-not-display">Your key has been updated successfully</span>
+    	<h3>Your key is</h3>
+    	<p>{{key}}</p>
+    </div>
     <br/>
-    <h2>Please enter a message to cipher</h2>
-    <input type="text" v-model="ciphered"/>
-    <h2>Please enter a message to decipher</h2>
-    <input type="text" v-model="deciphered"/>
+    
+    <div id="vue-cipher-main">
+    	<h2>Please enter a message to cipher</h2>
+    	<input type="text" id="js-cipher-message"/>
+    	<button id="js-cipher-message-button">Confirm</button>
+    	<span id="js-empty-cipher-message" class="css-do-not-display">The message should not be empty</span>
+    	<span id="js-illegal-cipher-message" class="css-do-not-display">The message is not considered valid</span>
+    	<p>{{ciphered}}</p>
+    </div>
+    
+    <div id="vue-decipher-main">
+    	<h2>Please enter a message to decipher</h2>
+    	<input type="text" id="js-decipher-message"/>
+    	<button id="js-decipher-message-button">Confirm</button>
+    	<span id="js-empty-decipher-message" class="css-do-not-display">The message should not be empty</span>
+    	<p>{{deciphered}}</p>
+    </div>
   </div>
 
   <script>
-    new Vue({
-      el: "#main",
+    var vmKey = new Vue({
+      el: "#vue-key-main",
       data: function() {
         return {
-          key: "",
-          ciphered: "",
-          deciphered: ""
+          key: ""
         }
       }
     });
+    
+    var vmCipher = new Vue({
+    	el: "#vue-cipher-main",
+    	data: function() {
+    		return {
+    			ciphered: ""
+    		}
+    	}
+    });
+    
+    var vmDecipher = new Vue({
+    	el: "#vue-decipher-main",
+    	data: function() {
+    		return {
+    			deciphered: ""
+    		}
+    	}
+    })
   </script>
 </body>
-<script type="text/javascript" src="/cipher.js"></script>
-<script type="text/javascript" src="/decipher.js"></script>
-<script type="text/javascript" src="/default.js"></script>
+
 <style>
-#main {
+#vue-key-main, #vue-cipher-main, #vue-decipher-main {
   font-family: serif;
   text-align: center;
 }
-</style>
 
+.css-do-not-display {
+	display: none
+}
+</style>
+<script type="text/javascript" src="/cipher/js/io.js"></script>
+<script type="text/javascript" src="/cipher/js/control.js"></script>
 </html>
